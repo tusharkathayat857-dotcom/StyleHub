@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StyleHub — Checkout</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/checkout.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">Style<span>Hub</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+    <div class="nav-icons">
+      <a href="cart.html" class="icon-btn">🛒 <span class="cart-badge">0</span></a>
+    </div>
+  </nav>
+
+  <!-- PROGRESS BAR -->
+  <div class="checkout-progress">
+    <div class="step done">✓ Cart</div>
+    <div class="step-line done"></div>
+    <div class="step active">📋 Details</div>
+    <div class="step-line"></div>
+    <div class="step">💳 Payment</div>
+    <div class="step-line"></div>
+    <div class="step">✔ Confirm</div>
+  </div>
+
+  <!-- ORDER PLACED CONFIRMATION (hidden by default) -->
+  <div id="confirmationPage" class="confirmation-page" style="display:none;">
+    <div class="confirm-card">
+      <div class="confirm-icon">🎉</div>
+      <h2>Order Placed!</h2>
+      <p>Thank you for shopping with StyleHub. Your order has been confirmed and will be dispatched within 1–2 business days.</p>
+      <div class="confirm-ref">Order Ref: <strong id="orderRef">SH-2025-0001</strong></div>
+      <div class="confirm-detail" id="confirmDetail"></div>
+      <a href="index.html" class="btn-primary" style="margin-top:1.5rem;display:inline-block;">Back to Home</a>
+      <a href="products.html" class="btn-outline" style="margin-top:1rem;display:inline-block;margin-left:0.8rem;">Continue Shopping</a>
+    </div>
+  </div>
+
+  <!-- CHECKOUT LAYOUT -->
+  <div class="checkout-layout section" id="checkoutLayout">
+
+    <!-- LEFT: FORMS -->
+    <div class="checkout-forms">
+
+      <!-- SECTION: CONTACT -->
+      <div class="form-card">
+        <h3 class="form-card-title">1. Contact Information</h3>
+        <div id="contactAlert"></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="chkFirst">First Name *</label>
+            <input type="text" id="chkFirst" placeholder="Jane"/>
+          </div>
+          <div class="form-group">
+            <label for="chkLast">Last Name *</label>
+            <input type="text" id="chkLast" placeholder="Doe"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="chkEmail">Email Address *</label>
+          <input type="email" id="chkEmail" placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label for="chkPhone">Phone Number</label>
+          <input type="tel" id="chkPhone" placeholder="+44 7700 000000"/>
+        </div>
+      </div>
+
+      <!-- SECTION: DELIVERY -->
+      <div class="form-card">
+        <h3 class="form-card-title">2. Delivery Address</h3>
+        <div class="form-group">
+          <label for="chkAddr1">Address Line 1 *</label>
+          <input type="text" id="chkAddr1" placeholder="123 Fashion Street"/>
+        </div>
+        <div class="form-group">
+          <label for="chkAddr2">Address Line 2</label>
+          <input type="text" id="chkAddr2" placeholder="Flat, Suite, Unit (optional)"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="chkCity">City *</label>
+            <input type="text" id="chkCity" placeholder="London"/>
+          </div>
+          <div class="form-group">
+            <label for="chkPostcode">Postcode *</label>
+            <input type="text" id="chkPostcode" placeholder="SW1A 1AA"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="chkCountry">Country *</label>
+          <select id="chkCountry">
+            <option value="">Select Country</option>
+            <option value="UK" selected>United Kingdom</option>
+            <option value="IE">Ireland</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+            <option value="ES">Spain</option>
+            <option value="IT">Italy</option>
+          </select>
+        </div>
+
+        <!-- Delivery method -->
+        <h4 class="delivery-label">Delivery Method</h4>
+        <div class="delivery-options">
+          <label class="delivery-opt">
+            <input type="radio" name="delivery" value="standard" checked onchange="updateOrderSummary()"/>
+            <span class="opt-icon"></span>
+            <span>
+              <strong>Standard Delivery</strong>
+              <small>3–5 business days · £3.99</small>
+            </span>
+          </label>
+          <label class="delivery-opt">
+            <input type="radio" name="delivery" value="express" onchange="updateOrderSummary()"/>
+            <span class="opt-icon"></span>
+            <span>
+              <strong>Express Delivery</strong>
+              <small>Next business day · £7.99</small>
+            </span>
+          </label>
+          <label class="delivery-opt">
+            <input type="radio" name="delivery" value="free" onchange="updateOrderSummary()"/>
+            <span class="opt-icon"></span>
+            <span>
+              <strong>Free Delivery</strong>
+              <small>5–7 business days · £0.00 (orders over £50)</small>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SECTION: PAYMENT -->
+      <div class="form-card">
+        <h3 class="form-card-title">3. Payment Details</h3>
+        <p class="secure-note"> Your payment is secured with 256-bit SSL encryption</p>
+        <div class="form-group">
+          <label for="cardName">Name on Card *</label>
+          <input type="text" id="cardName" placeholder="Jane Doe"/>
+        </div>
+        <div class="form-group">
+          <label for="cardNum">Card Number *</label>
+          <input type="text" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cardExp">Expiry Date *</label>
+            <input type="text" id="cardExp" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)"/>
+          </div>
+          <div class="form-group">
+            <label for="cardCvc">CVC *</label>
+            <input type="text" id="cardCvc" placeholder="123" maxlength="3"/>
+          </div>
+        </div>
+        <div class="card-icons">
+          <span class="card-icon">💳 VISA</span>
+          <span class="card-icon">💳 Mastercard</span>
+          <span class="card-icon">💳 Amex</span>
+        </div>
+      </div>
+
+      <!-- PLACE ORDER BTN -->
+      <div id="formAlert"></div>
+      <button class="btn-primary" style="width:100%;padding:1.2rem;font-size:1rem;" onclick="placeOrder()">
+         Place Order & Pay
+      </button>
+      <p style="text-align:center;font-size:0.8rem;color:var(--clr-muted);margin-top:0.8rem;">
+        By placing your order, you agree to our <a href="#" style="color:var(--clr-accent)">Terms of Service</a>.
+      </p>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <aside class="checkout-summary">
+      <h3>Order Summary</h3>
+      <div id="summaryItems" class="summary-items"></div>
+      <div class="summary-divider"></div>
+      <div class="summary-row"><span>Subtotal</span><span id="ckSubtotal">£0.00</span></div>
+      <div class="summary-row"><span>Delivery</span><span id="ckDelivery">£3.99</span></div>
+      <div class="summary-divider"></div>
+      <div class="summary-row total-row"><span>Total</span><span id="ckTotal">£0.00</span></div>
+      <div class="trust-badges">
+        <span>Secure Payment</span>
+        <span>Tracked Delivery</span>
+        <span>Guaranteed Quality</span>
+    </div>
+    </aside>
+
+  </div>
+
+  <script src="js/checkout.js"></script>
+</body>
+</html>

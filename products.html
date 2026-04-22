@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StyleHub — Shop All</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/products.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">Style<span>Hub</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Shop</a></li>
+      <li><a href="cart.html">Cart <span class="cart-count">0</span></a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+    <div class="nav-icons">
+      <a href="cart.html" class="icon-btn">🛒 <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="login.html" class="icon-btn">👤</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div>
+      <p class="page-breadcrumb"><a href="index.html">Home</a> / Shop All</p>
+      <h1 class="page-title">All Products</h1>
+      <p class="page-sub" id="resultCount">Showing all 24 items</p>
+    </div>
+  </div>
+
+  <!-- SHOP LAYOUT -->
+  <div class="shop-layout section">
+
+    <!-- SIDEBAR FILTERS -->
+    <aside class="sidebar">
+      <div class="filter-block">
+        <h4>Search</h4>
+        <input type="text" id="searchInput" placeholder="Search products..." class="sidebar-search"/>
+      </div>
+
+      <div class="filter-block">
+        <h4>Category</h4>
+        <label class="filter-check"><input type="checkbox" value="women" onchange="applyFilters()"/> Women</label>
+        <label class="filter-check"><input type="checkbox" value="men" onchange="applyFilters()"/> Men</label>
+        <label class="filter-check"><input type="checkbox" value="accessories" onchange="applyFilters()"/> Accessories</label>
+        <label class="filter-check"><input type="checkbox" value="sale" onchange="applyFilters()"/> Sale</label>
+      </div>
+
+      <div class="filter-block">
+        <h4>Price Range</h4>
+        <div class="price-range">
+          <span>£0</span>
+          <input type="range" id="priceRange" min="0" max="200" value="200" oninput="updatePrice(this)"/>
+          <span id="priceVal">£200</span>
+        </div>
+      </div>
+
+      <div class="filter-block">
+        <h4>Sort By</h4>
+        <select id="sortSelect" onchange="applyFilters()" class="sidebar-search">
+          <option value="default">Default</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name-az">Name: A–Z</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" style="width:100%;margin-top:1rem" onclick="clearFilters()">Clear Filters</button>
+    </aside>
+
+    <!-- PRODUCTS GRID -->
+    <main>
+      <div class="product-grid" id="productGrid">
+        <!-- Populated by JS -->
+      </div>
+      <p id="noResults" class="no-results" style="display:none;">No products found. Try adjusting your filters.</p>
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">Style<span>Hub</span></div>
+        <p>Independent fashion for independent minds.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Shop</h4>
+        <ul><li><a href="#">Women</a></li><li><a href="#">Men</a></li><li><a href="#">Accessories</a></li></ul>
+      </div>
+      <div class="footer-links">
+        <h4>Help</h4>
+        <ul><li><a href="#">Returns</a></li><li><a href="#">Sizing Guide</a></li><li><a href="#">Contact</a></li></ul>
+      </div>
+      <div class="footer-links">
+        <h4>Follow</h4>
+        <ul><li><a href="#">Instagram</a></li><li><a href="#">Pinterest</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 StyleHub. All rights reserved.</p></div>
+  </footer>
+
+  <script src="js/products.js"></script>
+</body>
+</html>
