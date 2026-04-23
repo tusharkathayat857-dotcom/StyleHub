@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StyleHub — Login / Register</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/login.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">Style<span>Hub</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Shop</a></li>
+      <li><a href="cart.html">Cart <span class="cart-count">0</span></a></li>
+      <li><a href="login.html" class="active">Login</a></li>
+    </ul>
+    <div class="nav-icons">
+      <a href="cart.html" class="icon-btn">🛒 <span class="cart-badge">0</span></a>
+      <a href="login.html" class="icon-btn">👤</a>
+    </div>
+  </nav>
+
+  <!-- AUTH LAYOUT -->
+  <div class="auth-page">
+
+    <!-- LEFT PANEL -->
+    <div class="auth-panel auth-left">
+      <div class="auth-brand">
+        <div class="nav-logo">Style<span>Hub</span></div>
+        <p>Your personal fashion destination. Curated style, delivered to your door.</p>
+      </div>
+      <div class="auth-visual">
+        <div class="auth-blob">
+          <span> <img src="images/women.png" alt="Women"> </span>
+          <div class="auth-float-tag ft1">New Arrivals </div>
+          <div class="auth-float-tag ft2">Free Returns </div>
+          <div class="auth-float-tag ft3">Members Only Deals </div>
+        </div>
+      </div>
+      <div class="auth-perks">
+        <div class="perk"><span></span> Exclusive member discounts</div>
+        <div class="perk"><span></span> Track your orders easily</div>
+        <div class="perk"><span></span> Birthday rewards & early access</div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL — TABS -->
+    <div class="auth-panel auth-right">
+
+      <!-- TABS -->
+      <div class="auth-tabs">
+        <button class="tab-btn active" onclick="switchTab('login')">Sign In</button>
+        <button class="tab-btn" onclick="switchTab('register')">Create Account</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="loginForm" class="auth-form">
+        <h2>Welcome Back</h2>
+        <p class="form-sub">Sign in to your StyleHub account</p>
+
+        <div id="loginAlert"></div>
+
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password"/>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button class="btn-primary" style="width:100%;padding:1rem;" onclick="handleLogin()">
+          Sign In →
+        </button>
+
+        <p class="switch-link">Don't have an account? <a onclick="switchTab('register')">Create one</a></p>
+
+        <div class="divider"><span>or continue with</span></div>
+        <div class="social-btns">
+          <button class="social-btn social-google" onclick="handleGoogleSignIn()" type="button">Google</button>
+          <button class="social-btn social-facebook" onclick="handleFacebookSignIn()" type="button">Facebook</button>
+        </div>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div id="registerForm" class="auth-form" style="display:none;">
+        <h2>Create Account</h2>
+        <p class="form-sub">Join StyleHub and discover your style</p>
+
+        <div id="registerAlert"></div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="Jane"/>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="Doe"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail">Email Address</label>
+          <input type="email" id="regEmail" placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" placeholder="At least 8 characters"/>
+          <p class="field-hint">Use 8+ characters with a mix of letters and numbers</p>
+        </div>
+        <div class="form-group">
+          <label for="regConfirm">Confirm Password</label>
+          <input type="password" id="regConfirm" placeholder="Repeat your password"/>
+        </div>
+
+        <div class="form-group check-group">
+          <label class="filter-check">
+            <input type="checkbox" id="termsCheck"/>
+            I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+          </label>
+        </div>
+        <div class="form-group check-group">
+          <label class="filter-check">
+            <input type="checkbox" id="marketingCheck"/>
+            Send me exclusive offers and style inspiration
+          </label>
+        </div>
+
+        <button class="btn-primary" style="width:100%;padding:1rem;" onclick="handleRegister()">
+          Create My Account →
+        </button>
+
+        <p class="switch-link">Already have an account? <a onclick="switchTab('login')">Sign in</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
